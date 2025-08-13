@@ -12,8 +12,7 @@ function findClosest(arr, target) {
 
 exports.getZscore = async (req, res) => {
     const ticker = req.params.ticker;
-    console.log(ticker)
-    
+        
     if (!ticker) {
         return res.status(400).json({ error: 'Missing ticker in path' });
     }
@@ -40,6 +39,7 @@ exports.getZscore = async (req, res) => {
     try {
         const fs_res = await axios.get(fs_url, config);
         const price_res = await axios.get(price_url, config);
+        // console.log(1)
 
         const items = {}
         const ts = []

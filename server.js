@@ -16,7 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 // Use Zscore routes
 // Limit repeated calls to /zscore/* from same IP
 const zscoreLimiter = rateLimit({
-    windowMs: 10 * 1000, // 10 seconds
+    // windowMs: 10 * 1000, // 10 seconds
+    windowMs: 2 * 1000, // 10 seconds
     max: 1, // limit each IP to 1 request per windowMs
     message: { error: 'Too many requests. Try again in a few seconds.' },
 });
