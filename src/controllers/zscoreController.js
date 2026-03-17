@@ -2,8 +2,28 @@ const axios = require('axios');
 const { zScore, resError, test } = require('../functions/functions');
 
 exports.test = async (req, res, next) => {
-  console.log(req.body.events)
-  res.send("yoyo")
+  if (req.query.apikey !== process.env['API_KEY']) {
+    return 'not from line';
+  }
+  
+  for (const event of req.body.events) {
+    if (event.message.text.split(' ').length === 1) {
+      if (event.replyToken) {
+        await axios.post('https://api.line.me/v2/bot/message/reply', {
+          replyToken,
+          messages: [
+            { type: 'text', text: event.message.text }
+          ]
+        }, {
+          headers: {
+            authorization: `Bearer ${process.env['CHANNEL_ACCESS_TOKEN']}`
+          }
+        })
+      }
+    } else {
+      resError(event.replyToken)
+    }
+  }  
 }
 
 function findClosest(arr, target) {
