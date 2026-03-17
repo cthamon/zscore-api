@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { zScore, resError } = require('../functions/zScore')
+const { zScore, resError } = require('../functions/functions')
 
 function findClosest(arr, target) {
     return arr.reduce((prevIdx, curr, idx, array) => {
