@@ -10,7 +10,7 @@ exports.test = async (req, res, next) => {
     if (event.message.text.split(' ').length === 1) {
       if (event.replyToken) {
         await axios.post('https://api.line.me/v2/bot/message/reply', {
-          replyToken,
+          replyToken: event.replyToken,
           messages: [
             { type: 'text', text: event.message.text }
           ]
