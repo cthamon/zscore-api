@@ -1,5 +1,9 @@
 const axios = require('axios')
 
+function test() {
+  console.log('test run')
+}
+
 async function zScore(replyToken, ticker) {
 
   const config = {
@@ -117,4 +121,4 @@ async function resError(replyToken) {
   }
 }
 
-module.exports = { zScore, resError }
+module.exports = { zScore, resError, test }
