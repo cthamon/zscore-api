@@ -5,8 +5,12 @@ exports.test = async (req, res, next) => {
   if (req.query.apikey !== process.env['API_KEY']) {
     return 'not from line';
   }
+
+  console.log("Check Token:", process.env.CHANNEL_ACCESS_TOKEN ? "Found" : "Not Found");
+  console.log("Token Value (First 5 chars):", process.env.CHANNEL_ACCESS_TOKEN?.substring(0, 5));
   
   for (const event of req.body.events) {
+    console.log(event);
     if (event.message.text.split(' ').length === 1) {
       if (event.replyToken) {
         await axios.post('https://api.line.me/v2/bot/message/reply', {
